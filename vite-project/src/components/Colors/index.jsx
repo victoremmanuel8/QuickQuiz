@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --primary: #FDFDFD;
     --secondary: #F7F7F7;
-    --third: #2A292E;
+    --third: #1D1D20;
   }
 `;
 

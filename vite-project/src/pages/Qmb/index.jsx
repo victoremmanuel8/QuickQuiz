@@ -1,3 +1,4 @@
+import GlobalStyle from '../../components/Colors';
 import H from '../../components/Header';
 import styled from 'styled-components';
 
@@ -8,7 +9,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-color: black;
+color: var(--third);
 `;
 
 function Qmb() {
@@ -16,6 +17,7 @@ function Qmb() {
   return (
     <>
       <H/>
+      <GlobalStyle />
       <SectionStyled>
         <h1>Quiz matemática Básico</h1>
       </SectionStyled>

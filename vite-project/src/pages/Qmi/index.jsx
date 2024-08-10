@@ -17,7 +17,7 @@ function Qmi() {
   return (
     <>
       <H/>
-      <GlobalStyle></GlobalStyle>
+      <GlobalStyle />
       <SectionStyled>
         <h1>Quiz matemática inter</h1>
       </SectionStyled>
