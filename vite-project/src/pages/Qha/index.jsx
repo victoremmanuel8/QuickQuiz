@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { questionsQmi } from '../../components/Questions/indexQmiQuestions';
+import { questionsQha } from '../../components/Questions/indexQhaQuestions';
 import GlobalStyle from '../../components/Colors';
 import { Link } from 'react-router-dom';
 
@@ -67,19 +67,19 @@ const StyledLink = styled(Link)`
   left: 25px;
 `;
 
-const Qmi = () => {
+const Qha = () => {
   const navigate = useNavigate(); // Hook para redirecionar
   const [progress, setProgress] = useState(() => {
-    return parseInt(localStorage.getItem('progressQmi')) || 0;
+    return parseInt(localStorage.getItem('progressQha')) || 0;
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
-  const [questions, setQuestions] = useState(questionsQmi);
+  const [questions, setQuestions] = useState(questionsQha);
   const [incorrectQuestions, setIncorrectQuestions] = useState([]);
 
   useEffect(() => {
-    const storedIncorrectQuestions = JSON.parse(localStorage.getItem('incorrectQuestionsQmi')) || [];
+    const storedIncorrectQuestions = JSON.parse(localStorage.getItem('incorrectQuestionsQha')) || [];
     setIncorrectQuestions(storedIncorrectQuestions);
   }, []);
 
@@ -107,8 +107,8 @@ const Qmi = () => {
         setCurrentQuestion(prev => prev + 1);
       } else {
         // Quiz complete
-        localStorage.setItem('progressQmi', Math.min((score + 1) * 10, 100));
-        localStorage.setItem('incorrectQuestionsQmi', JSON.stringify(incorrectQuestions));
+        localStorage.setItem('progressQha', Math.min((score + 1) * 10, 100));
+        localStorage.setItem('incorrectQuestionsQha', JSON.stringify(incorrectQuestions));
         // Redireciona para a página inicial
         navigate("/");
       }
@@ -150,4 +150,4 @@ const Qmi = () => {
   );
 };
 
-export default Qmi;
+export default Qha;

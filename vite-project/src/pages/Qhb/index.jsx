@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { questionsQmi } from '../../components/Questions/indexQmiQuestions';
+import { questionsQhb } from '../../components/Questions/indexQhbQuestions';
 import GlobalStyle from '../../components/Colors';
 import { Link } from 'react-router-dom';
 
-// Estilos
 const Body = styled.body`
-  background-color: var(--third);
-  width: 100%;
-  height: 100vh;
+background-color: var(--third);
+width: 100%;
+height: 100vh;
 `;
 
 const QuizContainer = styled.div`
@@ -67,19 +66,20 @@ const StyledLink = styled(Link)`
   left: 25px;
 `;
 
-const Qmi = () => {
+
+const Qhb = () => {
   const navigate = useNavigate(); // Hook para redirecionar
   const [progress, setProgress] = useState(() => {
-    return parseInt(localStorage.getItem('progressQmi')) || 0;
+    return parseInt(localStorage.getItem('progressQhb')) || 0;
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
-  const [questions, setQuestions] = useState(questionsQmi);
+  const [questions, setQuestions] = useState(questionsQhb);
   const [incorrectQuestions, setIncorrectQuestions] = useState([]);
 
   useEffect(() => {
-    const storedIncorrectQuestions = JSON.parse(localStorage.getItem('incorrectQuestionsQmi')) || [];
+    const storedIncorrectQuestions = JSON.parse(localStorage.getItem('incorrectQuestionsQhb')) || [];
     setIncorrectQuestions(storedIncorrectQuestions);
   }, []);
 
@@ -107,8 +107,8 @@ const Qmi = () => {
         setCurrentQuestion(prev => prev + 1);
       } else {
         // Quiz complete
-        localStorage.setItem('progressQmi', Math.min((score + 1) * 10, 100));
-        localStorage.setItem('incorrectQuestionsQmi', JSON.stringify(incorrectQuestions));
+        localStorage.setItem('progressQhb', Math.min((score + 1) * 10, 100));
+        localStorage.setItem('incorrectQuestionsQhb', JSON.stringify(incorrectQuestions));
         // Redireciona para a página inicial
         navigate("/");
       }
@@ -124,30 +124,30 @@ const Qmi = () => {
           <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
         </svg>
       </StyledLink>
-      <GlobalStyle />
+      <GlobalStyle/>
       <QuizContainer>
-        {questions.length === 0 ? (
-          <div>Nenhuma pergunta disponível.</div>
-        ) : (
-          <>
-            <QuestionHeader>Question {currentQuestion + 1}/{questions.length}</QuestionHeader>
-            <QuestionText>{question.question}</QuestionText>
-            <OptionsContainer>
-              {question.options.map(option => (
-                <Option
-                  key={option}
-                  selected={selectedOption === option}
-                  onClick={() => handleAnswer(option)}
-                >
-                  {option}
-                </Option>
-              ))}
-            </OptionsContainer>
-          </>
-        )}
-      </QuizContainer>
+      {questions.length === 0 ? (
+        <div>Nenhuma pergunta disponível.</div>
+      ) : (
+        <>
+          <QuestionHeader>Question {currentQuestion + 1}/{questions.length}</QuestionHeader>
+          <QuestionText>{question.question}</QuestionText>
+          <OptionsContainer>
+            {question.options.map(option => (
+              <Option
+                key={option}
+                selected={selectedOption === option}
+                onClick={() => handleAnswer(option)}
+              >
+                {option}
+              </Option>
+            ))}
+          </OptionsContainer>
+        </>
+      )}
+    </QuizContainer>
     </Body>
   );
 };
 
-export default Qmi;
+export default Qhb;

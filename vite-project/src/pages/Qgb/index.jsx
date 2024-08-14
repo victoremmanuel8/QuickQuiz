@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { questionsQmi } from '../../components/Questions/indexQmiQuestions';
+import { questionsQgb } from '../../components/Questions/indexQgbQuestions';
 import GlobalStyle from '../../components/Colors';
 import { Link } from 'react-router-dom';
 
-// Estilos
 const Body = styled.body`
   background-color: var(--third);
   width: 100%;
@@ -67,19 +66,25 @@ const StyledLink = styled(Link)`
   left: 25px;
 `;
 
-const Qmi = () => {
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+`;
+
+const Qgb = () => {
   const navigate = useNavigate(); // Hook para redirecionar
   const [progress, setProgress] = useState(() => {
-    return parseInt(localStorage.getItem('progressQmi')) || 0;
+    return parseInt(localStorage.getItem('progressQgb')) || 0;
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
-  const [questions, setQuestions] = useState(questionsQmi);
+  const [questions, setQuestions] = useState(questionsQgb);
   const [incorrectQuestions, setIncorrectQuestions] = useState([]);
 
   useEffect(() => {
-    const storedIncorrectQuestions = JSON.parse(localStorage.getItem('incorrectQuestionsQmi')) || [];
+    const storedIncorrectQuestions = JSON.parse(localStorage.getItem('incorrectQuestionsQgb')) || [];
     setIncorrectQuestions(storedIncorrectQuestions);
   }, []);
 
@@ -107,8 +112,8 @@ const Qmi = () => {
         setCurrentQuestion(prev => prev + 1);
       } else {
         // Quiz complete
-        localStorage.setItem('progressQmi', Math.min((score + 1) * 10, 100));
-        localStorage.setItem('incorrectQuestionsQmi', JSON.stringify(incorrectQuestions));
+        localStorage.setItem('progressQgb', Math.min((score + 1) * 10, 100));
+        localStorage.setItem('incorrectQuestionsQgb', JSON.stringify(incorrectQuestions));
         // Redireciona para a página inicial
         navigate("/");
       }
@@ -150,4 +155,4 @@ const Qmi = () => {
   );
 };
 
-export default Qmi;
+export default Qgb;
