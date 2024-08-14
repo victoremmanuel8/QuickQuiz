@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../../public/vite.svg'
+import Logo from '../../../public/logo.svg'
 
 
 const HeaderStyle = styled.header`

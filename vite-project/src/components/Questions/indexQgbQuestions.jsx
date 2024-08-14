@@ -55,3 +55,4 @@ export const questionsQgb = [
     answer: "Suécia",
   }
 ];
+  
